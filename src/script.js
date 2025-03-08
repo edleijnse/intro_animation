@@ -2,10 +2,10 @@ const imageContainer = document.getElementById("bouncing-image");
 
 // Liste der Bilder in ../images/gold
 const images = [
-    "../images/gold/gold1.jpg",
-    "../images/gold/gold2.jpg",
-    "../images/gold/gold3.jpg",
-    "../images/gold/gold4.jpg"
+    "../images/gold/gold1.png",
+    "../images/gold/gold2.png",
+    "../images/gold/gold3.png",
+    "../images/gold/gold4.png"
 ];
 
 let currentIndex = 0;
