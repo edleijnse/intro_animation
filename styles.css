@@ -18,6 +18,20 @@ body {
     justify-content: center;
     align-items: center;
 }
+.gold-style {
+    border: 5px solid gold;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.silver-style {
+    border: 5px dashed silver;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.platinum-style {
+    border: 5px solid lightgray;
+    animation: bounce 2s infinite ease-in-out;
+}
 
 
 #bouncing-image {
