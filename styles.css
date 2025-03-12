@@ -20,17 +20,17 @@ body {
 }
 .gold-style {
     border: 5px solid gold;
-    animation: bounce 2s infinite ease-in-out;
+    animation: bounceGold 6s infinite ease-in-out;
 }
 
 .silver-style {
     border: 5px dashed silver;
-    animation: bounce 2s infinite ease-in-out;
+    animation: bounceSilver 4s infinite ease-in-out;
 }
 
 .platinum-style {
     border: 5px solid violet;
-    animation: bounce 2s infinite ease-in-out;
+    animation: bouncePlatinum 8s infinite ease-in-out;
 }
 
 
@@ -39,7 +39,6 @@ body {
     max-height: 200px; /* Maximalhöhe */
     width: 100px; /* Automatische Breite */
     height: 50px; /* Automatische Höhe */
-    animation: bounce 5s infinite ease-in-out;
 }
 
 /* Animation für das Hüpfen */
@@ -55,6 +54,57 @@ body {
     }
     75% {
         transform: translateX(-50px) translateY(-150px); /* Geht nach links oben */
+    }
+    100% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+}
+@keyframes bounceGold {
+    0% {
+        transform: translateX(0px) translateY(0px);
+    }
+    25% {
+        transform: translateX(150px) translateY(-300px); /* Geht nach rechts oben */
+    }
+    50% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+    75% {
+        transform: translateX(-150px) translateY(-300px); /* Geht nach links oben */
+    }
+    100% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+}
+@keyframes bounceSilver {
+    0% {
+        transform: translateX(0px) translateY(0px);
+    }
+    25% {
+        transform: translateX(150px) translateY(-400px); /* Geht nach rechts oben */
+    }
+    50% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+    75% {
+        transform: translateX(-150px) translateY(-400px); /* Geht nach links oben */
+    }
+    100% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+}
+@keyframes bouncePlatinum {
+    0% {
+        transform: translateX(0px) translateY(0px);
+    }
+    25% {
+        transform: translateX(150px) translateY(-500px); /* Geht nach rechts oben */
+    }
+    50% {
+        transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
+    }
+    75% {
+        transform: translateX(-150px) translateY(-500px); /* Geht nach links oben */
     }
     100% {
         transform: translateX(0px) translateY(0px); /* Zurück zur Mitte */
