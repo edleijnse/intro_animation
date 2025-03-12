@@ -1,3 +1,4 @@
+// Container für das Bild
 const imageContainer = document.getElementById("bouncing-image");
 
 // Liste der Bilder mit Sponsortyp
@@ -8,71 +9,57 @@ const images = [
     { src: "images/silver/silver1.png", sponsortype: "silver" },
     { src: "images/silver/silver2.png", sponsortype: "silver" },
     { src: "images/platinum/adcubum.svg", sponsortype: "platinum" },
-    { src: "images/platinum/mimacom.png", sponsortype: "platinum" }
+    { src: "images/platinum/mimacom.png", sponsortype: "platinum" },
 ];
 
-// Indizes für die Bilder
-let goldIndex = 0;
-let silverIndex = 0;
-let platinumIndex = 0;
+// Indizes und Ablaufsteuerung der Sponsortypen
+const sponsorTypes = ["gold", "silver", "platinum"];
+let currentTypeIndex = 0; // Zeigt an, welcher Sponsortyp gerade angezeigt wird
+const indices = {
+    gold: 0,
+    silver: 0,
+    platinum: 0,
+};
 
-// Ablaufsteuerung in der Animation
-let currentSponsortype = "gold";
-function updateImage(newSrc, sponsorType) {
-    const imageContainer = document.getElementById("bouncing-image");
+// Aktualisiert das Bild im Container
+function updateImage(newSrc, className) {
     if (imageContainer) {
-        imageContainer.className = sponsorType;
-        imageContainer.src = newSrc + "?" + new Date().getTime(); // Cache-busting
+        imageContainer.className = className;
+        imageContainer.src = `${newSrc}?${new Date().getTime()}`; // Cache-Busting
     } else {
         console.error("Image container not found!");
     }
 }
 
-// Funktion für "gold"-Sponsoren
-function changeImageGold() {
-    const goldImages = images.filter(image => image.sponsortype === "gold");
-    updateImage(goldImages[goldIndex].src, "gold-style" );
-    if (goldIndex === goldImages.length - 1) {
-        currentSponsortype = "silver"; // Als Nächstes aufrufen}
+// Funktion, um das nächste Bild eines bestimmten Sponsortyps anzuzeigen
+function changeImageByType(type) {
+    const typeImages = images.filter(image => image.sponsortype === type);
+    if (typeImages.length === 0) return; // Falls keine Bilder vorhanden sind
+
+    const currentIndex = indices[type];
+    const nextImage = typeImages[currentIndex];
+
+    // Bild aktualisieren
+    updateImage(nextImage.src, `${type}-style`);
+    // Sponsor-Typ für den nächsten Aufruf wechseln
+    if (currentIndex === typeImages.length - 1){
+        currentTypeIndex = (currentTypeIndex + 1) % sponsorTypes.length;
     }
-    goldIndex = (goldIndex + 1) % goldImages.length; // Index zyklisch erhöhen
+
+    // Index erhöhen (zyklisch)
+    indices[type] = (currentIndex + 1) % typeImages.length;
 }
 
-// Funktion für "silver"-Sponsoren
-function changeImageSilver() {
-    const silverImages = images.filter(image => image.sponsortype === "silver");
-    updateImage(silverImages[silverIndex].src ,"silver-style");
-    if (silverIndex === silverImages.length - 1) {
-        currentSponsortype = "platinum";
-    }// Als Nächstes aufrufen}
-    silverIndex = (silverIndex + 1) % silverImages.length; // Index zyklisch erhöhen
-
-}
-
-
-
-function changeImagePlatinum() {
-    const platinumImages = images.filter(image => image.sponsortype === "platinum");
-    updateImage(platinumImages[platinumIndex].src ,"platinum-style");
-    const imageContainer = document.getElementById("bouncing-image");
-    if (platinumIndex === platinumImages.length - 1) {
-        currentSponsortype = "gold";
-    }
-    platinumIndex = (platinumIndex + 1) % platinumImages.length; // Index zyklisch erhöhen
-
-}
-
-// Hauptfunktion zum Steuern der Sequenz
+// Steuert die Sequenzierung der Sponsortypen
 function changeImageSequentially() {
-    if (currentSponsortype === "gold") {
-        changeImageGold();
-    } else if (currentSponsortype === "silver") {
-        changeImageSilver();
-    } else if (currentSponsortype === "platinum") {
-        changeImagePlatinum();
-    }
+    const currentType = sponsorTypes[currentTypeIndex];
+
+    // Sponsortyp-Bild wechseln
+    changeImageByType(currentType);
+
+
 }
 
-// Starte die Animation alle 5 Sekunden
-changeImageSequentially()
-setInterval(changeImageSequentially, 2000);
+// Starte die Animation alle 2 Sekunden
+changeImageSequentially();
+setInterval(changeImageSequentially, 4000);
