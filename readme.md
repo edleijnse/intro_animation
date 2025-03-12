@@ -53,17 +53,20 @@ This project displays a sequence of sponsor images categorized into different sp
 - Defines the CSS styles for sponsor categories (`.gold-style`, `.silver-style`, and `.platinum-style`).
 - Example:
 ``` css
-  .gold-style {
-      border: 4px solid gold;
-  }
+ .gold-style {
+    border: 5px solid gold;
+    animation: bounceGold 6s infinite ease-in-out;
+}
 
-  .silver-style {
-      border: 4px solid silver;
-  }
+.silver-style {
+    border: 5px dashed silver;
+    animation: bounceSilver 4s infinite ease-in-out;
+}
 
-  .platinum-style {
-      border: 4px solid #e5e4e2; /* Platinum color */
-  }
+.platinum-style {
+    border: 5px solid violet;
+    animation: bouncePlatinum 8s infinite ease-in-out;
+}
 ```
 ### `images/`
 - Stores image files sorted into categories:
